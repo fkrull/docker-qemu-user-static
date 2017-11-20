@@ -4,6 +4,7 @@ enable)
     update-binfmts --enable
     ;;
 disable)
+    update-binfmts --enable
     update-binfmts --disable
     ;;
 *)
