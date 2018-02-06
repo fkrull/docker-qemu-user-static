@@ -14,8 +14,8 @@ This image registers the emulator binaries with the `F - fix binary` flag (see t
 
 ## Usage
 ```
-# modprobe binfmt_misc
-# docker run --rm --privileged fkrull/qemu-user-static enable
+$ modprobe binfmt_misc
+$ docker run --rm --privileged fkrull/qemu-user-static enable
 ```
 
 The `binfmt_misc` module may already be loaded on your system; unfortunately, it can't be loaded inside the container so you need to do it manually.
