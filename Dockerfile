@@ -1,5 +1,4 @@
-ARG ARCH=
-FROM ${ARCH}ubuntu:artful
+FROM ubuntu:artful
 
 RUN apt-get update && \
     apt-get install -y qemu-user-static && \
