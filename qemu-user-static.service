@@ -1,0 +1,27 @@
+[Unit]
+Description=QEMU usermode emulation
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+Restart=no
+
+ExecStartPre=/sbin/modprobe binfmt_misc
+ExecStartPre=-/usr/bin/docker pull fkrull/qemu-user-static:latest
+
+ExecStart=/usr/bin/docker run -t \
+    --rm \
+    --privileged \
+    fkrull/qemu-user-static:latest \
+    enable
+
+ExecStop=/usr/bin/docker run -t \
+    --rm \
+    --privileged \
+    fkrull/qemu-user-static:latest \
+    disable
+
+[Install]
+WantedBy=multi-user.target
