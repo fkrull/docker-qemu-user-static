@@ -1,4 +1,5 @@
 FROM ubuntu:17.10 AS binaries
+
 RUN apt-get update && \
     apt-get install -y \
         python3 \
@@ -14,3 +15,5 @@ COPY --from=binaries /formats/qemu-* /formats/
 COPY scripts/qemu-enable.sh /qemu-enable.sh
 RUN chmod 0755 /qemu-enable.sh
 ENTRYPOINT ["/qemu-enable.sh"]
+LABEL maintainer="Felix Krull <f_krull@gmx.de>"
+LABEL url="https://github.com/fkrull/docker-qemu-user-static"

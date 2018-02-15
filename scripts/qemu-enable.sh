@@ -4,6 +4,7 @@ set -eu
 FORMATS=/formats
 BINFMT_FS=/proc/sys/fs/binfmt_misc
 
+# enable binfmt
 function binfmt_is_mounted {
      mount | grep -q ${BINFMT_FS}
 }
@@ -18,6 +19,7 @@ function enable_binfmt {
     echo 1 > ${BINFMT_FS}/status
 }
 
+# enable/disable a single format
 function enable_format {
     echo -n enabling $1 ...
     if [ ! -f ${BINFMT_FS}/$1 ]; then
@@ -39,6 +41,7 @@ function disable_format {
     fi
 }
 
+# enabling/disabling all formats
 function enable_all_formats {
     for format in $(ls ${FORMATS}); do
         enable_format ${format}
@@ -51,6 +54,7 @@ function disable_all_formats {
     done
 }
 
+# CLI
 case $@ in
 enable)
     mount_binfmt
