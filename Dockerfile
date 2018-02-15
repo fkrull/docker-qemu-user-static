@@ -1,12 +1,14 @@
-FROM ubuntu:artful
-
+FROM ubuntu:17.10
 RUN apt-get update && \
-    apt-get install -y qemu-user-static && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y \
+        python3 \
+        qemu-user-static
 
-ADD enable-fix-binary.sh /enable-fix-binary.sh
-RUN bash /enable-fix-binary.sh && rm /enable-fix-binary.sh
+COPY scripts/convert-formats.py /convert-formats.py
+RUN mkdir -p /formats && \
+    python3 /convert-formats.py /var/lib/binfmts /formats
 
-ADD qemu-enable.sh /qemu-enable.sh
-RUN chmod 0755 /qemu-enable.sh
-ENTRYPOINT ["/qemu-enable.sh"]
+COPY scripts/qemu-enable.sh /qemu-enable.sh
+ENTRYPOINT ["/bin/bash", "/qemu-enable.sh"]
+
+RUN rm /formats/python*
