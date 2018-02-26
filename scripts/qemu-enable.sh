@@ -65,7 +65,10 @@ disable)
     mount_binfmt
     disable_all_formats
     ;;
+sh)
+    exec /bin/sh
+    ;;
 *)
-    echo "usage: enable | disable"
+    echo "usage: enable | disable | sh"
     exit 1
 esac
