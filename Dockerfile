@@ -8,7 +8,7 @@ RUN apt-get update && \
 RUN mkdir -p /binaries /formats
 
 COPY scripts/convert-formats.py /convert-formats.py
-RUN python3 /convert-formats.py /var/lib/binfmts /formats
+RUN python3 /convert-formats.py /var/lib/binfmts /formats qemu-
 COPY scripts/copy-binaries.py /copy-binaries.py
 RUN python3 /copy-binaries.py /formats /usr/bin /binaries
 

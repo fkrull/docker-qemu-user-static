@@ -46,7 +46,11 @@ def get_binfmt(name, lines):
 def main():
     input_dir = sys.argv[1]
     output_dir = sys.argv[2]
+    prefix = sys.argv[3]
     for fname in os.listdir(input_dir):
+        if not fname.startswith(prefix):
+            print('skipping %s' % fname)
+            continue
         input_file = os.path.join(input_dir, fname)
         print('converting %s ...' % fname)
         with open(input_file, 'r') as fin:
