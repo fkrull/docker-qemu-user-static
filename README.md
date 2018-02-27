@@ -11,15 +11,12 @@ This image registers the emulator binaries with the `F - fix binary` flag (see t
 ## Requirements
 * an amd64 Docker host
 * Linux 4.8 or newer with `binfmt_misc` support, either built-in or as a module
-* shell access to the Docker host, to load the kernel module if necessary
+* the ability to run containers with `--privileged` on the Docker host
 
 ## Usage
 ```
-$ modprobe binfmt_misc
 $ docker run --rm --privileged fkrull/qemu-user-static enable
 ```
-
-The `binfmt_misc` module may already be loaded on your system; unfortunately, it can't be loaded inside the container so you need to do it manually.
 
 To disable the integration again, either reboot the system or run the following command:
 ```
@@ -55,7 +52,7 @@ FROM ${TARGET_ARCH}/debian:stable
 Note that it depends on the image how specific architectures are referenced. The official Docker Hub images (the ones without the initial `namespace/`) use the convention shown above, but others may use other forms like separate repositories or architecture tags.
 
 ## License
-Copyright (c) 2017 Felix Krull. All rights reserved.
+Copyright (c) 2017, 2018 Felix Krull. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
