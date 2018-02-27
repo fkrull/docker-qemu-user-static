@@ -1,5 +1,6 @@
 # Fully Self-Contained Userland QEMU in a Container
 [![Docker Build Status](https://img.shields.io/docker/build/fkrull/qemu-user-static.svg?style=flat-square)](https://hub.docker.com/r/fkrull/qemu-user-static/)
+[![Travis Status](https://img.shields.io/travis/fkrull/docker-qemu-user-static.svg?style=flat-square)](https://travis-ci.org/fkrull/docker-qemu-user-static/)
 
 This image provides execution support for foreign-architecture binaries on amd64, using Debian's [qemu-user-static](https://packages.debian.org/sid/qemu-user-static) build of QEMU's user mode emulator.
 
